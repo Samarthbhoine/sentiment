@@ -22,13 +22,18 @@ def analyze_sentiment(text):
 def analyze_with_genai(text):
     model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(
-        f"""
-        Analyze the sentiment of this review and explain briefly:
-        Review: {text}
-        
-        Give:
-        - Sentiment (positive/negative)
-        - Short explanation
-        """
+    f"""
+    You are an expert sentiment analyst.
+
+    Analyze the following review:
+    "{text}"
+
+    Return:
+    1. Sentiment (Positive / Negative / Neutral)
+    2. Confidence (High/Medium/Low)
+    3. Short explanation (1-2 lines, specific)
+
+    Be clear and professional.
+    """
     )
     return response.text
