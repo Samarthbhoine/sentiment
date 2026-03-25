@@ -10,21 +10,21 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 sentiment_pipeline = pipeline("sentiment-analysis")
 
 def analyze_sentiment(text):
-
+    
     result = sentiment_pipeline(text)
 
     label = result[0]["label"]
     score = result[0]["score"]
 
-    # Convert to Neutral if confidence is low
-    if score < 0.6:
+    # ✅ Neutral logic (THIS is what you asked about)
+    if score < 0.75:
         label = "Neutral 😐"
     elif label == "POSITIVE":
         label = "Positive 😊"
-    elif label == "NEGATIVE":
+    else:
         label = "Negative 😞"
 
-    return label
+    return label, score
 
 
 def analyze_with_genai(text, label):
