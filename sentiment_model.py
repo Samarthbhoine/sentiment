@@ -14,7 +14,15 @@ def analyze_sentiment(text):
     result = sentiment_pipeline(text)
 
     label = result[0]["label"]
-    # score = result[0]["score"]
+    score = result[0]["score"]
+
+    # Convert to Neutral if confidence is low
+    if score < 0.6:
+        label = "Neutral 😐"
+    elif label == "POSITIVE":
+        label = "Positive 😊"
+    elif label == "NEGATIVE":
+        label = "Negative 😞"
 
     return label
 
