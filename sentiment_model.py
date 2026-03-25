@@ -27,21 +27,20 @@ def analyze_sentiment(text):
     return label
 
 
-def analyze_with_genai(text):
-    model = genai.GenerativeModel("gemini-2.5-flash")
+def analyze_with_genai(text, label):
+    model = genai.GenerativeModel("gemini-1.5-flash")
+
     response = model.generate_content(
-    f"""
-    You are an expert sentiment analyst.
+        f"""
+        You are a sentiment analysis assistant.
 
-    Analyze the following review:
-    "{text}"
+        The sentiment of the following text is already determined as: {label}
 
-    Return:
-    1. Sentiment (Positive / Negative / Neutral)
-    3. Short explanation (1-2 lines, specific)
+        Text: "{text}"
 
-    Be clear and professional.
-    And give Sentiment and Short explanation on new line
-    """
+        Give ONLY a short explanation (1-2 lines) explaining why this sentiment is {label}.
+        Do NOT change the sentiment.
+        """
     )
+
     return response.text
