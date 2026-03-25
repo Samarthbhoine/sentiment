@@ -13,11 +13,12 @@ if st.button("Analyze"):
     if user_input != "":
 
         label = analyze_sentiment(user_input)
-        explain = analyze_with_genai(user_input,label)
+        explain = analyze_with_genai(user_input, label)
 
         st.write("### Result")
         st.write("Sentiment:", label)
-        st.write("Explanation:", explain)
+        st.write("### Explanation")
+        st.write(explain)
 
     else:
         st.warning("Please enter some text")
