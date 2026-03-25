@@ -38,10 +38,10 @@ def analyze_with_genai(text):
 
     Return:
     1. Sentiment (Positive / Negative / Neutral)
-    2. Confidence (High/Medium/Low)
     3. Short explanation (1-2 lines, specific)
 
     Be clear and professional.
+    And give Sentiment and Short explanation on new line
     """
     )
     return response.text
