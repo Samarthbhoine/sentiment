@@ -12,11 +12,12 @@ if st.button("Analyze"):
 
     if user_input != "":
 
-        label = analyze_sentiment(user_input)
+        label, score = analyze_sentiment(user_input)
         explain = analyze_with_genai(user_input, label)
 
         st.write("### Result")
         st.write("Sentiment:", label)
+        st.write(f"Confidence: {round(score*100, 2)}%")
         st.write("### Explanation")
         st.write(explain)
 
