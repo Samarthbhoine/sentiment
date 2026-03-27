@@ -8,13 +8,13 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # Load sentiment analysis model
 sentiment_pipeline = pipeline(
-    "sentiment-analysis",
+    "text-classification",
     model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-    return_all_scores=True
+    top_k=None 
 )
 
 def analyze_sentiment(text):
-    results = sentiment_pipeline(text)[0]
+    results = sentiment_pipeline(text)[0]  
 
     scores = {res['label']: res['score'] for res in results}
 
