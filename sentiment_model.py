@@ -16,21 +16,18 @@ sentiment_pipeline = pipeline(
 def analyze_sentiment(text):
     results = sentiment_pipeline(text)[0]
 
-    # Convert to dictionary
     scores = {res['label']: res['score'] for res in results}
 
-    # Labels mapping
     label_map = {
         "LABEL_0": "Negative 😞",
         "LABEL_1": "Neutral 😐",
         "LABEL_2": "Positive 😊"
     }
 
-    # Get highest score label
     best_label = max(scores, key=scores.get)
     best_score = scores[best_label]
 
-    return f"{label_map[best_label]} (Confidence: {best_score:.2f})"
+    return label_map[best_label], round(best_score, 2)
 
 
 def analyze_with_genai(text, best_label):
